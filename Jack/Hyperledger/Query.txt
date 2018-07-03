@@ -1,0 +1,24 @@
+/**
+ * New query file
+ */
+
+query selectAccessCode{
+  description: "Verifica codice di accesso ad una stanza"
+  statement: 
+  	SELECT org.hotel.network.Room
+  	WHERE (access_code == _$access_code)
+}
+
+query verifyFreeRoom{
+  description: "Verifica lo status di una stanza"
+  statement:
+    SELECT org.hotel.network.Room
+    WHERE (permanence != _$permanence)
+}
+
+query fingGuestByName{
+  description: "Cerco un utente in base al suo nome"
+  statement:
+  	SELECT org.hotel.network.HotelGuest
+  WHERE (lastName == _$lastName AND firstName == _$firstName)
+}
