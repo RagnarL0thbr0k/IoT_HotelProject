@@ -34,11 +34,7 @@ async function sampleTransaction(tx) {  // eslint-disable-line no-unused-vars
 function generateAccessCode(){
   	var elencoCaratteri="1234567890ABCD";
 
-	//var minimoCaratteri=1;
-	//var massimoCaratteri=7;
-	//var differenzaCaratteri=massimoCaratteri-minimoCaratteri;
-
-	var lunghezza=4   //Math.round((Math.random()*differenzaCaratteri)+minimoCaratteri);
+	var lunghezza=4   
 
 	var incremento=0;
 	var password=0;
@@ -51,3 +47,52 @@ function generateAccessCode(){
   return password;
 }
 
+/**
+ * Sample transaction processor function.
+ * @param {org.hotel.network.RoomFree} tx The sample transaction instance.
+ * @transaction
+ */
+
+async function freeRoom(tx){
+  tx.roomId.guestId = tx.hostId;
+  tx.roomId.permanence = "available";
+  tx.roomId.access_code = generateHostAccessCode();
+
+    // Get the asset registry for the asset.
+    const assetRegistry = await getAssetRegistry('org.hotel.network.Room');
+    // Update the asset in the asset registr.
+    await assetRegistry.update(tx.roomId);
+}
+  
+function generateHostAccessCode(){
+  	var elencoCaratteri="0ABCD";
+
+	var lunghezza=4   
+
+	var incremento=0;
+	var password=0;
+
+	while(incremento<lunghezza){
+	   password+=elencoCaratteri.charAt(Math.round(Math.random()*elencoCaratteri.length));
+	   incremento++;
+	}
+  
+  return password;
+}
+
+/**
+ * Sample transaction processor function.
+ * @param {org.hotel.network.UnvailableRoom} tx The sample transaction instance.
+ * @transaction
+ */
+
+async function unavailabeRoom(tx){
+  tx.roomId.guestId = tx.hostId;
+  tx.roomId.permanence = "!unvailable!";
+  tx.roomId.access_code = generateHostAccessCode();
+
+    // Get the asset registry for the asset.
+    const assetRegistry = await getAssetRegistry('org.hotel.network.Room');
+    // Update the asset in the asset registr.
+    await assetRegistry.update(tx.roomId);
+}

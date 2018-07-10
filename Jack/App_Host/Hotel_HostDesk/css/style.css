@@ -1,0 +1,12 @@
+#title{
+    color: yellow;
+}
+
+#hotel_name{
+    font-style: italic;
+    color: darkorange;
+}
+
+#free_room_table {
+    margin-right: 10px;
+}

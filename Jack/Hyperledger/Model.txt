@@ -36,8 +36,25 @@ participant HotelGuest identified by guestId {
   o String nin
 }
 
+participant HotelHost identified by hostId{
+  o String hostId
+  o String firstName
+  o String lastName
+  o String role
+}
+
 transaction RoomBooking {
   --> Room roomId
   --> HotelGuest guestId 
   o String permanence
+}
+
+transaction RoomFree{
+  --> Room roomId
+  --> HotelGuest hostId
+}
+
+transaction UnvailableRoom{
+  --> Room roomId
+  --> HotelGuest hostId
 }
