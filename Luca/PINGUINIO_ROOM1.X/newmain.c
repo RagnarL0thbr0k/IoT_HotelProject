@@ -22,12 +22,14 @@
     int m=0;
     int u=0;   //indice per inserimento psw[]
     int check=0;
+    
     char psw[5]={0,0,0,0,0};
-    char psw1[5]={'A','B','C',6,5};
+    char psw1[5]={'A','B','C','6','5'};
     unsigned int startClock=0;
     char ora[2]={0,0};
     char min[2]={0,0};
     char sec[2]={0,0};
+    char keypress,keyboard='0';
     
     int once=1;
 void InitTimer2(){
@@ -82,16 +84,12 @@ void updateClock(){
             if(m==60)
             {
                 m=0; 
-                o++; 
-                if(m==60)
-                {
-                    m=0; 
-                    o++;
-                    if(o==24)o=0; 
+                o++;
+                if(o>=24)o=0; 
                 }
             }
         }
-    }
+    
     }
 void viewClock(){
     
@@ -107,18 +105,46 @@ void viewClock(){
 }
 void checkPsw(char psw[])
 {
-    if(psw[0]==psw1[0] && psw[1]==psw1[1] && psw[2]==psw1[2] && psw[3]==psw1[3] && psw[4]==psw1[4] )check=1;
-}
-void Psw(char keypress, char psw[])
-{
-    while(check==0){     
-    while(psw[4]==0 && keypress!='*')
-    {
-         if(keypress!='ÿ'&& keypress!='#' )
-             {
-                 
-             }
+    if(psw[0]==psw1[0] && psw[1]==psw1[1] && psw[2]==psw1[2] && psw[3]==psw1[3] && psw[4]==psw1[4] ){
+        check=1; 
+        LCD_setCursor(16,2);
+        LCDWrite("V");
+        wait(50);
+        
     }
+    else
+    {
+        LCD_setCursor(16,2);
+        LCDWrite("X");
+    }
+}
+void Password(char psw[])
+{   u=0;
+    LCD_setCursor(1,5);
+   LCDWrite("PASSWORD:");
+   LCD_setCursor(1,2);
+   LCDWrite("*:<ok>");
+   LCD_setCursor(10,1);
+   
+    while(check==0){  
+        
+        keypress = kbd_getc();
+         if(keypress!='ÿ'&& keypress!='#' )
+            {
+            if(keypress=='*')checkPsw(psw);
+            psw[u]=keypress;
+            LCD_putc(psw[u]);
+            u++;
+            if(u>4)
+            {
+                u=0; 
+                LCD_setCursor(10,1); 
+            }
+            
+            
+            }
+    
+        
     }
 }
 
@@ -134,9 +160,9 @@ void initializeADC(){
 int main(void)
 {
 
-    int j=0;
+    
 
-    char pw[4];
+    
     TRISDbits.TRISD6=0;
     TRISDbits.TRISD7=0;
     TRISDbits.TRISD8=0;
@@ -159,14 +185,16 @@ int main(void)
     InitTimer2();
     int i=0;
     initLcd();
+    char pw[4];
     int t=0;
     int t_old; 
     keypad_init();
-    char keypress,keyboard='0';
+    
     welcome();
     LCD_Clear();
+    Password( psw);
+    LCD_Clear();
     // Use multi-vectored interrupts
-    
     while(1)
     {   
         if(startClock)updateClock();
