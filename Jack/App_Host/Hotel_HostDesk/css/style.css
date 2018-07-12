@@ -10,3 +10,16 @@
 #free_room_table {
     margin-right: 10px;
 }
+
+.room_info_border{
+    border: double 2px;
+    color: darkblue;
+    width: 75%;
+}
+
+.room_info{
+    font-style: italic;
+    text-align: center;
+    color: darkgreen;
+    margin-bottom: 5px;
+}

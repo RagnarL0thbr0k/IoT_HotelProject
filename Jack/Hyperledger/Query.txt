@@ -6,7 +6,7 @@ query selectAccessCode{
   description: "Verifica codice di accesso ad una stanza"
   statement: 
   	SELECT org.hotel.network.Room
-  	WHERE (access_code == _$access_code)
+  	WHERE (access_code == _$access_code AND roomId == _$roomId)
 }
 
 query verifyFreeRoom{

@@ -14,53 +14,46 @@
     <link rel="stylesheet" href="css/style.css">
 
 </head>
-<body>
-
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-        <a class="navbar-brand" id="title">Pineapple Hotel Desk</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="room_info.html">Rooms
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="guest_info.html">Guest</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="host_info.html">Employees</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<body onload="Show();">
 
 <!-- Page Content -->
 <div class="container">
+    <div class="card-header">
+        <h1 class="my-4" id="hotel_name">Pineapple Hotel</h1>
+
+    </div>
 
     <div class="row">
 
-        <div class="col-lg-3">
+        <div class="col-lg-6" align="center">
 
-            <h1 class="my-4" id="hotel_name">Pineapple Hotel</h1>
             <div class="list-group">
-                <a href="#" class="list-group-item">Category 1</a>
-                <a href="#" class="list-group-item">Category 2</a>
-                <a href="#" class="list-group-item">Category 3</a>
+                <hr class="room_info_border">
+                <h5 align="center">Room ID: </h5>
+                <h6 id="room_name" class="room_info"></h6><br>
+
+                <hr class="room_info_border">
+                <h5 align="center">Room guest: </h5>
+                <h6 id="room_guest" class="room_info"></h6><br>
+
+                <hr class="room_info_border">
+                <h5 align="center">Room access code: </h5>
+                <h6 id="room_code" class="room_info"></h6><br>
+                <hr class="room_info_border" >
+
+                <h6 align="center">Actual guest permanence: </h6>
+                <p id="room_permanence" class="room_info"></p><br>
+                <hr class="room_info_border" >
+
+
             </div>
 
         </div>
-
-        //il resto
+        <div class="col-lg-6" align="center">
+            <hr class="room_info_border">
+            <h5 align="center">Temp Room: </h5>
+            <h6 id="room_temp" class="room_info"></h6><br>
+        </div>
     </div>
 </div>
 

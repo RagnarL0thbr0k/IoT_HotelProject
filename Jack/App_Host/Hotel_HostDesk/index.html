@@ -51,13 +51,15 @@
 
       <div class="row">
 
-          <div class="col-lg-3">
+          <div class="col-lg-3" align="left">
 
               <h1 class="my-4" id="hotel_name">Pineapple Hotel</h1>
               <div class="list-group">
-                  <button onclick="AddNewRoom()" class="list-group-item">Add New Rooom</button>
-                  <a href="#" class="list-group-item">Add New Guest</a>
-                  <a href="#" class="list-group-item">Add New Host</a>
+                  <button type="button"  onclick="AddNewRoom()" class="list-group-item; btn-success" style="margin-bottom: 5px">Add New Room</button>
+                  <button type="button"  onclick="AddNewGuest()" class="list-group-item; btn-success" style="margin-bottom: 5px">Add New Guest</button>
+                  <button type="button" onclick="AddNewHost()" class="list-group-item; btn-success" style="margin-bottom: 20px">Add New Host</button>
+                  <input id="ID" style="border: 2px double; margin-bottom: 5px; text-align: center" value="Room ID"/>
+                  <button type="button" onclick="OpenInfo()" class="list-group-item; btn-success" style="margin-bottom: 20px">Show Room Info</button>
               </div>
 
           </div>
@@ -67,7 +69,7 @@
               <br>
               <div class="row" id="rooms">
 
-                  <h2 style="align-items: center" >No rooms found</h2>
+                  <!-- spazio per le camere -->
 
               </div>
               <!-- /.row -->
@@ -84,7 +86,7 @@
   <!-- Footer -->
   <footer class="py-5 bg-dark">
       <div class="container">
-          <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+          <p class="m-0 text-center text-white">Copyright &copy; Pineapple Hotel & Friends</p>
       </div>
       <!-- /.container -->
   </footer>
