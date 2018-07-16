@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2018
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIazure", "APIazure\APIazure.csproj", "{B8C45163-4032-428B-9DBE-210D64D2FBF2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B8C45163-4032-428B-9DBE-210D64D2FBF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8C45163-4032-428B-9DBE-210D64D2FBF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8C45163-4032-428B-9DBE-210D64D2FBF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8C45163-4032-428B-9DBE-210D64D2FBF2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7B8799BF-38C7-48E8-8D1D-26893B6F3FA3}
+	EndGlobalSection
+EndGlobal

@@ -19,7 +19,7 @@
 <!-- Page Content -->
 <div class="container">
     <div class="card-header">
-        <h1 class="my-4" id="hotel_name">Pineapple Hotel</h1>
+        <h1 class="my-4" id="hotel_name" style="text-align: center">Pineapple Hotel</h1>
 
     </div>
 
@@ -53,6 +53,15 @@
             <hr class="room_info_border">
             <h5 align="center">Temp Room: </h5>
             <h6 id="room_temp" class="room_info"></h6><br>
+
+            <hr class="room_info_border">
+            <h5 align="center">Door status: </h5>
+            <h6 id="door_status" class="room_info"></h6><br>
+            <hr class="room_info_border">
+
+            <input id="newTemp" style="border: 2px double; margin-top: 5px; margin-bottom: 5px; text-align: center"/><br>
+            <button type="button" onclick="setRoomTemp()" class="list-group-item; btn-dark" style="margin-bottom: 12px">Set Room Temperature</button>
+
         </div>
     </div>
 </div>

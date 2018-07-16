@@ -9,6 +9,8 @@ var dataGET = new Array();
 var id0;
 var id1;
 var n;
+var r0mGuest;
+var id;
 
 
 // Gestisco la creazione di nuove camere e tabelle informative associate
@@ -35,7 +37,7 @@ function AddNewRoom() {
                    "description": description.toString(),
                    "price": price,
                    "access_code": " ",
-                   "guestId": "resource:org.hotel.network.HotelGuest#PH_ADMIN",
+                   "guestId": "resource:org.hotel.network.HotelGuest#PH_Default",
                    "permanence": " "
                });
 
@@ -191,7 +193,7 @@ function OpenInfo() {
                     var r0mID = data2[i].roomId;
                     if ( r0mID === current_room_Id){
                         var  queryesString = "?"+current_room_Id;
-                        window.open('/Hotel_HostDesk/room_info.html'+queryesString,'RoomInfo','width=300,height=500');
+                        window.open('/Hotel_HostDesk/room_info.html'+queryesString,'RoomInfo','width=1000,height=700');
 
                     }
                 }
@@ -205,7 +207,8 @@ function OpenInfo() {
 
 function Show() {
 
-    var id;
+    // spostato id globalmente
+
     var queryString = decodeURIComponent(window.location.search);
     queryString = queryString.substring(1);
     var queries = queryString.split("&");
@@ -220,7 +223,7 @@ function Show() {
 
                 var r0mID = data3[i].roomId;
                 var r0mAcOde = data3[i].access_code;
-                var r0mGuest = data3[i].guestId;
+                r0mGuest = data3[i].guestId;
                 var r0mPer = data3[i].permanence;
 
                 if ( r0mID === id){
@@ -229,11 +232,16 @@ function Show() {
                     document.getElementById('room_code').innerHTML=r0mAcOde;
                     document.getElementById('room_permanence').innerHTML=r0mPer;
 
-                    id = 0;
+                    //  id = 0;
 
                 }
             }
+
+            getRoomData(id);
         }).fail(function(){ alert("Room info not found.");});
+
+
+
     }catch(error) {
         alert("There is a server problem\n" + error);
 
@@ -241,3 +249,48 @@ function Show() {
 
 }
 
+function getRoomData(id) {
+    $.get("http://localhost:61591/api/getTemp/"+id,function (dataStatus){}).done(function (dataStatus){
+        for (var i = 0; i <= dataStatus.length; i++){
+
+            var response = {"devname": dataStatus[i].devname.trim().toString(), "room_temp": dataStatus[i].room_temp, "status_door": dataStatus[i].status_door, "timestamp": dataStatus[i].timestamp, "flag": dataStatus[i].flag };
+            var door = "Undefined";
+
+            //if (response.devname === id){
+
+                document.getElementById('room_temp').innerHTML = response.room_temp;
+
+                if (dataStatus[i].status_door === 0){
+                    door = "close";
+                }else {
+                    door = "!OPEN!";
+
+                }
+            document.getElementById('door_status').innerHTML = door;
+            //}
+        }
+
+    }).fail(function(){ alert("Room info not found.");});
+}
+
+function setRoomTemp() {
+
+    var temp = document.getElementById('newTemp').value;
+    var guest = r0mGuest.substr(38);
+
+    try {
+        $.post("http://localhost:61591/api/setTemp/"+id+"/"+temp+"/"+guest+"",
+            {
+                "devname": id,
+                "set_room_temp": temp,
+                "timestamp": "1998-01-02T00:00:00.0000000",
+                "user": guest,
+                "flag": "1"
+            });
+
+        alert("New temperature insert with success!");
+
+    }catch(error) {
+        alert("There was an error: \n" + error);
+    }
+}

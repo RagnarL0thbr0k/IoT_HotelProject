@@ -1,0 +1,11 @@
+C:\Users\Utente\Documents\Project Work_2°\Code\APIazure\APIazure\bin\Debug\netcoreapp2.0\APIazure.deps.json
+C:\Users\Utente\Documents\Project Work_2°\Code\APIazure\APIazure\bin\Debug\netcoreapp2.0\APIazure.runtimeconfig.json
+C:\Users\Utente\Documents\Project Work_2°\Code\APIazure\APIazure\bin\Debug\netcoreapp2.0\APIazure.runtimeconfig.dev.json
+C:\Users\Utente\Documents\Project Work_2°\Code\APIazure\APIazure\bin\Debug\netcoreapp2.0\APIazure.dll
+C:\Users\Utente\Documents\Project Work_2°\Code\APIazure\APIazure\bin\Debug\netcoreapp2.0\APIazure.pdb
+C:\Users\Utente\Documents\Project Work_2°\Code\APIazure\APIazure\obj\Debug\netcoreapp2.0\APIazure.csproj.CoreCompileInputs.cache
+C:\Users\Utente\Documents\Project Work_2°\Code\APIazure\APIazure\obj\Debug\netcoreapp2.0\APIazure.AssemblyInfoInputs.cache
+C:\Users\Utente\Documents\Project Work_2°\Code\APIazure\APIazure\obj\Debug\netcoreapp2.0\APIazure.AssemblyInfo.cs
+C:\Users\Utente\Documents\Project Work_2°\Code\APIazure\APIazure\obj\Debug\netcoreapp2.0\APIazure.dll
+C:\Users\Utente\Documents\Project Work_2°\Code\APIazure\APIazure\obj\Debug\netcoreapp2.0\APIazure.pdb
+C:\Users\Utente\Documents\Project Work_2°\Code\APIazure\APIazure\obj\Debug\netcoreapp2.0\APIazure.csprojAssemblyReference.cache
