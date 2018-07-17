@@ -4,6 +4,8 @@
 
 var dataFreeRoom = new Array();
 var dataFreeGuest = new Array();
+var dataNotFreeRoom = new Array();
+
 
 
 function showFree() {
@@ -16,14 +18,21 @@ function showFree() {
 
                 var id = data[i].roomId;
                 var occupy = data[i].guestId;
+                var permanence = data[i].permanence;
+
 
                 if (occupy === "resource:org.hotel.network.HotelGuest#PH_Default" || occupy === "resource:org.hotel.network.HotelGuest#PH_ADMIN"){
 
                     dataFreeRoom.push('<h5 style="color: darkgreen">'+id+'   '+'</h5>');
+                    Disp2(0);
+
+                }else {
+                    dataNotFreeRoom.push('<h5 style="color: darkred">'+id+'/'+occupy.substr(38)+'/'+(permanence)+'</h5>');
+                    Disp2(2);
 
                 }
 
-                Disp2(0);
+
 
             }
 
@@ -41,11 +50,8 @@ function showFree() {
                 var surname = data2[i].lastName;
 
 
-                //if (occupy === "resource:org.hotel.network.HotelGuest#PH_Default" || occupy === "resource:org.hotel.network.HotelGuest#PH_ADMIN"){
+                dataFreeGuest.push('<h5 style="color: darkgreen">'+id+'/'+name+'/'+surname+'   '+'</h5>');
 
-                    dataFreeGuest.push('<h5 style="color: darkgreen">'+id+'"/"'+name+'"/"'+surname+'   '+'</h5>');
-
-                //}
 
                 Disp2(1);
 
@@ -76,17 +82,45 @@ function roomBooking(){
 
         });
 
+        alert("Booking success!");
+
+        location.reload();
+
     }catch (error){
         alert("Room creation aborted.\n"+error);
 
     }
+}
 
+function dismissRoom() {
+
+    try {
+
+        var roomID = prompt("Room ID: ");
+
+        $.post("http://40.114.200.254:3000/api/RoomFree",{
+
+                "$class": "org.hotel.network.RoomFree",
+                "roomId": "resource:org.hotel.network.Room#"+ roomID,
+                "hostId": "resource:org.hotel.network.HotelGuest#PH_Default"
+
+            });
+
+        alert("Room dismiss with success!");
+
+        location.reload();
+
+    }catch (error){
+        alert("There is a server problem\n" + error);
+
+    }
 
 }
 
 function Disp2(identity) {
     var str='';
     var str2='';
+    var str3='';
 
 
     if (identity === 0){
@@ -104,6 +138,15 @@ function Disp2(identity) {
         }
 
         document.getElementById('free_guest').innerHTML=str2; // Display the elements of the array
+    }
+
+    if (identity === 2){
+        for (var k=0;k<dataNotFreeRoom.length;k++)
+        {
+            str3 += dataNotFreeRoom[k] +'<hr>';  // adding each element with key number to variable
+        }
+
+        document.getElementById('reservation').innerHTML=str3; // Display the elements of the array
     }
 
 }
