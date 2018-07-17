@@ -66,7 +66,7 @@ function Disp(identity) {
     if (identity === 0){
         for (var i=0;i<dataRoom.length;i++)
         {
-            str += dataRoom[i] + "<br >";  // adding each element with key number to variable
+            str += dataRoom[i] + "<br>";  // adding each element with key number to variable
         }
     }
     document.getElementById('rooms').innerHTML=str; // Display the elements of the array
@@ -207,8 +207,6 @@ function OpenInfo() {
 
 function Show() {
 
-    // spostato id globalmente
-
     var queryString = decodeURIComponent(window.location.search);
     queryString = queryString.substring(1);
     var queries = queryString.split("&");
@@ -231,9 +229,6 @@ function Show() {
                     document.getElementById('room_guest').innerHTML=r0mGuest.substr(38);
                     document.getElementById('room_code').innerHTML=r0mAcOde;
                     document.getElementById('room_permanence').innerHTML=r0mPer;
-
-                    //  id = 0;
-
                 }
             }
 
@@ -250,13 +245,11 @@ function Show() {
 }
 
 function getRoomData(id) {
-    $.get("http://localhost:61591/api/getTemp/"+id,function (dataStatus){}).done(function (dataStatus){
+    $.get("https://apiazureprojectwork.azurewebsites.net/api/getTemp/"+id,function (dataStatus){}).done(function (dataStatus){
         for (var i = 0; i <= dataStatus.length; i++){
 
             var response = {"devname": dataStatus[i].devname.trim().toString(), "room_temp": dataStatus[i].room_temp, "status_door": dataStatus[i].status_door, "timestamp": dataStatus[i].timestamp, "flag": dataStatus[i].flag };
             var door = "Undefined";
-
-            //if (response.devname === id){
 
                 document.getElementById('room_temp').innerHTML = response.room_temp;
 
@@ -267,7 +260,7 @@ function getRoomData(id) {
 
                 }
             document.getElementById('door_status').innerHTML = door;
-            //}
+
         }
 
     }).fail(function(){ alert("Room info not found.");});
@@ -279,7 +272,7 @@ function setRoomTemp() {
     var guest = r0mGuest.substr(38);
 
     try {
-        $.post("http://localhost:61591/api/setTemp/"+id+"/"+temp+"/"+guest+"",
+        $.post("https://apiazureprojectwork.azurewebsites.net/api/setTemp/"+id+"/"+temp+"/"+guest+"",
             {
                 "devname": id,
                 "set_room_temp": temp,
